@@ -1,109 +1,1066 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1264d8">
-<title>Sulawesi Market — MVP V1</title>
+
+<title>Sulawesi Market — MVP V2</title>
+
 <style>
-:root{--blue:#1264d8;--red:#e53935;--bg:#f5f7fb;--text:#172033;--muted:#727b8c}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
-.app{max-width:430px;margin:auto;min-height:100vh;background:white;padding-bottom:75px}
-header{padding:16px;position:sticky;top:0;background:#fff;z-index:5;border-bottom:1px solid #eee}
-.brand{font-size:21px;font-weight:900;color:var(--blue)}.brand span{color:var(--red)}
-.creator{font-size:10px;color:#7a8190;margin-top:3px}
-.search{margin-top:12px;background:#f0f3f8;padding:12px 14px;border-radius:14px;color:#8a92a0}
-.location{padding:12px 16px;color:#245ca8;font-weight:700;border-bottom:1px solid #eee}
-.banner{margin:14px 16px;padding:20px;border-radius:17px;background:linear-gradient(135deg,#1264d8,#4aa4ff);color:#fff}
-.banner b{font-size:21px;display:block;margin-bottom:5px}
-section{padding:0 16px}.title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px;font-weight:800}.title small{color:var(--blue)}
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.cat{padding:11px 3px;border-radius:13px;background:#f5f7fb;text-align:center;font-size:11px}.cat b{display:block;font-size:21px;margin-bottom:4px}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{border:1px solid #e9edf3;border-radius:14px;overflow:hidden}.pic{height:125px;background:#eaf2ff;display:flex;align-items:center;justify-content:center;font-size:48px}.info{padding:10px}.name{font-size:13px;font-weight:800}.price{color:var(--red);font-weight:900;margin:5px 0}.place{font-size:10px;color:var(--muted)}
-.page{display:none;padding:16px}.page.active{display:block}.form label{font-size:12px;font-weight:700;display:block;margin:12px 0 6px}.form input,.form select,.form textarea{width:100%;padding:12px;border:1px solid #dfe4ec;border-radius:11px;font-size:14px}.form textarea{height:90px;resize:none}
-.btn{width:100%;padding:13px;border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:800;margin-top:14px}.outline{background:#fff;color:var(--blue);border:1px solid var(--blue)}
-.empty{text-align:center;padding:45px 20px;color:var(--muted)}
-.profile{text-align:center;padding-top:20px}.avatar{width:78px;height:78px;border-radius:50%;background:#1264d8;color:#fff;margin:auto;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900}
-.about{background:#f5f7fb;border-radius:16px;padding:18px;margin-top:18px}.about h3{margin:0 0 5px}
-.chatbox{border:1px solid #e6eaf0;border-radius:14px;padding:14px;margin-top:15px}.bubble{background:#eef5ff;padding:10px;border-radius:12px;margin:8px 0;max-width:80%}.mine{margin-left:auto;background:#1264d8;color:#fff}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e5e8ee;padding:8px 3px calc(8px + env(safe-area-inset-bottom));z-index:9}nav button{border:0;background:none;color:#697386;font-size:11px}nav .active{color:var(--blue);font-weight:800}.sell{width:45px;height:45px;border-radius:50%;background:var(--blue)!important;color:#fff!important;font-size:23px!important;margin:-20px auto 0;border:4px solid white}
-.toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#172033;color:#fff;padding:11px 15px;border-radius:12px;font-size:12px;display:none;z-index:20}
+:root{
+--blue:#1264d8;
+--red:#e53935;
+--bg:#f5f7fb;
+--text:#172033;
+--muted:#727b8c
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:var(--bg);
+font-family:Arial,sans-serif;
+color:var(--text)
+}
+
+.app{
+max-width:430px;
+margin:auto;
+min-height:100vh;
+background:white;
+padding-bottom:75px
+}
+
+header{
+padding:16px;
+position:sticky;
+top:0;
+background:#fff;
+z-index:5;
+border-bottom:1px solid #eee
+}
+
+.brand{
+font-size:21px;
+font-weight:900;
+color:var(--blue)
+}
+
+.brand span{
+color:var(--red)
+}
+
+.creator{
+font-size:10px;
+color:#7a8190;
+margin-top:3px
+}
+
+.search{
+margin-top:12px;
+background:#f0f3f8;
+padding:12px 14px;
+border-radius:14px;
+color:#8a92a0;
+cursor:pointer
+}
+
+.location{
+padding:12px 16px;
+color:#245ca8;
+font-weight:700;
+border-bottom:1px solid #eee
+}
+
+.banner{
+margin:14px 16px;
+padding:20px;
+border-radius:17px;
+background:linear-gradient(135deg,#1264d8,#4aa4ff);
+color:#fff
+}
+
+.banner b{
+font-size:21px;
+display:block;
+margin-bottom:5px
+}
+
+section{
+padding:0 16px
+}
+
+.title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:18px 0 10px;
+font-weight:800
+}
+
+.title small{
+color:var(--blue);
+cursor:pointer
+}
+
+.cats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px
+}
+
+.cat{
+padding:11px 3px;
+border-radius:13px;
+background:#f5f7fb;
+text-align:center;
+font-size:11px;
+cursor:pointer;
+transition:.15s
+}
+
+.cat:active{
+transform:scale(.96);
+background:#eaf2ff
+}
+
+.cat b{
+display:block;
+font-size:21px;
+margin-bottom:4px
+}
+
+.products{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:11px
+}
+
+.card{
+border:1px solid #e9edf3;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer
+}
+
+.card:active{
+transform:scale(.98)
+}
+
+.pic{
+height:125px;
+background:#eaf2ff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:48px
+}
+
+.info{
+padding:10px
+}
+
+.name{
+font-size:13px;
+font-weight:800
+}
+
+.price{
+color:var(--red);
+font-weight:900;
+margin:5px 0
+}
+
+.place{
+font-size:10px;
+color:var(--muted)
+}
+
+.page{
+display:none;
+padding:16px
+}
+
+.page.active{
+display:block
+}
+
+.form label{
+font-size:12px;
+font-weight:700;
+display:block;
+margin:12px 0 6px
+}
+
+.form input,
+.form select,
+.form textarea{
+width:100%;
+padding:12px;
+border:1px solid #dfe4ec;
+border-radius:11px;
+font-size:14px
+}
+
+.form textarea{
+height:90px;
+resize:none
+}
+
+.btn{
+width:100%;
+padding:13px;
+border:0;
+border-radius:12px;
+background:var(--blue);
+color:#fff;
+font-weight:800;
+margin-top:14px
+}
+
+.outline{
+background:#fff;
+color:var(--blue);
+border:1px solid var(--blue)
+}
+
+.empty{
+text-align:center;
+padding:45px 20px;
+color:var(--muted)
+}
+
+.profile{
+text-align:center;
+padding-top:20px
+}
+
+.avatar{
+width:78px;
+height:78px;
+border-radius:50%;
+background:#1264d8;
+color:#fff;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+font-weight:900
+}
+
+.about{
+background:#f5f7fb;
+border-radius:16px;
+padding:18px;
+margin-top:18px
+}
+
+.about h3{
+margin:0 0 5px
+}
+
+.chatbox{
+border:1px solid #e6eaf0;
+border-radius:14px;
+padding:14px;
+margin-top:15px
+}
+
+.bubble{
+background:#eef5ff;
+padding:10px;
+border-radius:12px;
+margin:8px 0;
+max-width:80%
+}
+
+.mine{
+margin-left:auto;
+background:#1264d8;
+color:#fff
+}
+
+.category-title{
+background:#f5f7fb;
+border-radius:14px;
+padding:13px;
+margin:8px 0 14px;
+font-weight:800;
+color:#245ca8
+}
+
+nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+max-width:430px;
+width:100%;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+background:#fff;
+border-top:1px solid #e5e8ee;
+padding:8px 3px calc(8px + env(safe-area-inset-bottom));
+z-index:9
+}
+
+nav button{
+border:0;
+background:none;
+color:#697386;
+font-size:11px;
+cursor:pointer
+}
+
+nav .active{
+color:var(--blue);
+font-weight:800
+}
+
+.sell{
+width:45px;
+height:45px;
+border-radius:50%;
+background:var(--blue)!important;
+color:#fff!important;
+font-size:23px!important;
+margin:-20px auto 0;
+border:4px solid white
+}
+
+.toast{
+position:fixed;
+bottom:82px;
+left:50%;
+transform:translateX(-50%);
+background:#172033;
+color:#fff;
+padding:11px 15px;
+border-radius:12px;
+font-size:12px;
+display:none;
+z-index:20;
+white-space:nowrap
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header>
- <div class="brand">SULAWESI <span>MARKET</span></div>
- <div class="creator">Pasarnya Orang Sulawesi · Founder & Creator: Andi Wira Darma</div>
- <div class="search" onclick="show('search')">🔎 &nbsp; Cari HP, mobil, motor, elektronik...</div>
+
+<div class="brand">
+SULAWESI <span>MARKET</span>
+</div>
+
+<div class="creator">
+Pasarnya Orang Sulawesi · Founder & Creator: Andi Wira Darma
+</div>
+
+<div class="search" onclick="show('search')">
+🔎 &nbsp; Cari HP, mobil, motor, elektronik...
+</div>
+
 </header>
 
+
+<!-- HOME -->
+
 <div id="home" class="page active">
- <div class="location">📍 Palopo, Sulawesi Selatan ▾</div>
- <div class="banner"><b>Jual Beli Mudah</b>Temukan barang di sekitar kamu di seluruh Sulawesi.</div>
- <section>
-  <div class="title">Kategori <small onclick="show('search')">Lihat semua ›</small></div>
-  <div class="cats">
-   <div class="cat" onclick="filter('HP')"><b>📱</b>HP</div><div class="cat"><b>🚗</b>Mobil</div>
-   <div class="cat"><b>🏍️</b>Motor</div><div class="cat"><b>💻</b>Laptop</div>
-   <div class="cat"><b>🏠</b>Properti</div><div class="cat"><b>🔧</b>Sparepart</div>
-   <div class="cat"><b>👕</b>Fashion</div><div class="cat"><b>📦</b>Lainnya</div>
-  </div>
-  <div class="title">🔥 Barang Terbaru <small onclick="show('search')">Lihat semua ›</small></div>
-  <div id="homeProducts" class="products"></div>
- </section>
+
+<div class="location">
+📍 Palopo, Sulawesi Selatan ▾
 </div>
+
+<div class="banner">
+<b>Jual Beli Mudah</b>
+Temukan barang di sekitar kamu di seluruh Sulawesi.
+</div>
+
+<section>
+
+<div class="title">
+Kategori
+<small onclick="show('search')">
+Lihat semua ›
+</small>
+</div>
+
+
+<div class="cats">
+
+<div class="cat" onclick="filter('HP')">
+<b>📱</b>HP
+</div>
+
+<div class="cat" onclick="filter('Mobil')">
+<b>🚗</b>Mobil
+</div>
+
+<div class="cat" onclick="filter('Motor')">
+<b>🏍️</b>Motor
+</div>
+
+<div class="cat" onclick="filter('Laptop')">
+<b>💻</b>Laptop
+</div>
+
+<div class="cat" onclick="filter('Properti')">
+<b>🏠</b>Properti
+</div>
+
+<div class="cat" onclick="filter('Sparepart')">
+<b>🔧</b>Sparepart
+</div>
+
+<div class="cat" onclick="filter('Fashion')">
+<b>👕</b>Fashion
+</div>
+
+<div class="cat" onclick="filter('Lainnya')">
+<b>📦</b>Lainnya
+</div>
+
+</div>
+
+
+<div class="title">
+
+🔥 Barang Terbaru
+
+<small onclick="show('search')">
+Lihat semua ›
+</small>
+
+</div>
+
+<div id="homeProducts" class="products"></div>
+
+</section>
+
+</div>
+
+
+<!-- SEARCH -->
 
 <div id="search" class="page">
- <h2>Cari Barang</h2>
- <div class="form"><input id="q" placeholder="Contoh: iPhone 13" oninput="renderSearch()"></div>
- <div class="title">Hasil</div><div id="results" class="products"></div>
+
+<h2>Cari Barang</h2>
+
+<div id="categoryTitle"></div>
+
+<div class="form">
+
+<input
+id="q"
+placeholder="Contoh: iPhone 13"
+oninput="renderSearch()"
+>
+
 </div>
+
+<div class="title">
+
+Hasil
+
+<small onclick="clearFilter">
+Reset
+</small>
+
+</div>
+
+<div id="results" class="products"></div>
+
+</div>
+
+
+<!-- JUAL -->
 
 <div id="sell" class="page">
- <h2>Jual Barang</h2>
- <div class="form">
-  <label>Nama barang</label><input id="pname" placeholder="Contoh: iPhone 13 128GB">
-  <label>Harga</label><input id="price" type="number" placeholder="4200000">
-  <label>Kategori</label><select id="cat"><option>HP</option><option>Mobil</option><option>Motor</option><option>Laptop</option><option>Elektronik</option><option>Lainnya</option></select>
-  <label>Lokasi</label><input id="loc" value="Palopo, Sulawesi Selatan">
-  <label>Deskripsi</label><textarea id="desc" placeholder="Jelaskan kondisi barang..."></textarea>
-  <button class="btn" onclick="publish()">Publikasikan Barang</button>
- </div>
+
+<h2>Jual Barang</h2>
+
+<div class="form">
+
+<label>Nama barang</label>
+
+<input
+id="pname"
+placeholder="Contoh: iPhone 13 128GB"
+>
+
+
+<label>Harga</label>
+
+<input
+id="price"
+type="number"
+placeholder="4200000"
+>
+
+
+<label>Kategori</label>
+
+<select id="cat">
+
+<option>HP</option>
+<option>Mobil</option>
+<option>Motor</option>
+<option>Laptop</option>
+<option>Properti</option>
+<option>Sparepart</option>
+<option>Fashion</option>
+<option>Elektronik</option>
+<option>Lainnya</option>
+
+</select>
+
+
+<label>Lokasi</label>
+
+<input
+id="loc"
+value="Palopo, Sulawesi Selatan"
+>
+
+
+<label>Deskripsi</label>
+
+<textarea
+id="desc"
+placeholder="Jelaskan kondisi barang..."
+></textarea>
+
+
+<button
+class="btn"
+onclick="publish()"
+>
+Publikasikan Barang
+</button>
+
 </div>
+
+</div>
+
+
+<!-- CHAT -->
 
 <div id="chat" class="page">
- <h2>Chat</h2><div class="chatbox"><b>Andi Phone</b><div class="bubble">Halo kak, masih ada?</div><div class="bubble mine">Masih kak, bisa COD.</div><div class="bubble">Bisa lihat kondisinya?</div><div class="form"><input placeholder="Ketik pesan..." onclick="toast('Chat demo — backend akan disambungkan pada tahap berikutnya.')"></div></div>
+
+<h2>Chat</h2>
+
+<div class="chatbox">
+
+<b>Andi Phone</b>
+
+<div class="bubble">
+Halo kak, masih ada?
 </div>
+
+<div class="bubble mine">
+Masih kak, bisa COD.
+</div>
+
+<div class="bubble">
+Bisa lihat kondisinya?
+</div>
+
+<div class="form">
+
+<input
+placeholder="Ketik pesan..."
+onclick="toast('Chat demo — backend akan disambungkan pada tahap berikutnya.')"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PROFILE -->
 
 <div id="profile" class="page">
- <div class="profile"><div class="avatar">AW</div><h2>Andi Wira Darma</h2><div class="creator">Founder & Creator — Sulawesi Market</div></div>
- <div class="about"><h3>SULAWESI MARKET</h3><p>Pasarnya Orang Sulawesi.</p><p><b>“Dari Sulawesi, untuk Orang Sulawesi.”</b></p><small>Versi prototype V1 · 2026</small></div>
- <button class="btn outline" onclick="toast('Fitur login akan disambungkan ke database.')">Login / Daftar</button>
+
+<div class="profile">
+
+<div class="avatar">
+AW
 </div>
 
-<nav>
- <button id="n-home" class="active" onclick="show('home')">⌂<br>Home</button>
- <button id="n-search" onclick="show('search')">⌕<br>Cari</button>
- <button id="n-sell" class="sell" onclick="show('sell')">＋</button>
- <button id="n-chat" onclick="show('chat')">💬<br>Chat</button>
- <button id="n-profile" onclick="show('profile')">◯<br>Profil</button>
-</nav>
-<div id="toast" class="toast"></div>
+<h2>
+Andi Wira Darma
+</h2>
+
+<div class="creator">
+Founder & Creator — Sulawesi Market
 </div>
+
+</div>
+
+
+<div class="about">
+
+<h3>
+SULAWESI MARKET
+</h3>
+
+<p>
+Pasarnya Orang Sulawesi.
+</p>
+
+<p>
+<b>
+“Dari Sulawesi, untuk Orang Sulawesi.”
+</b>
+</p>
+
+<small>
+Versi prototype V2 · 2026
+</small>
+
+</div>
+
+
+<button
+class="btn outline"
+onclick="toast('Fitur login akan disambungkan ke database.')"
+>
+Login / Daftar
+</button>
+
+</div>
+
+
+<!-- NAV -->
+
+<nav>
+
+<button
+id="n-home"
+class="active"
+onclick="show('home')"
+>
+⌂<br>Home
+</button>
+
+<button
+id="n-search"
+onclick="show('search')"
+>
+⌕<br>Cari
+</button>
+
+<button
+id="n-sell"
+class="sell"
+onclick="show('sell')"
+>
+＋
+</button>
+
+<button
+id="n-chat"
+onclick="show('chat')"
+>
+💬<br>Chat
+</button>
+
+<button
+id="n-profile"
+onclick="show('profile')"
+>
+◯<br>Profil
+</button>
+
+</nav>
+
+
+<div id="toast" class="toast"></div>
+
+</div>
+
+
 <script>
+
 let products=[
- {name:'iPhone 13 128GB',price:4200000,cat:'HP',loc:'Palopo',icon:'📱'},
- {name:'Honda Vario 160',price:18500000,cat:'Motor',loc:'Masamba',icon:'🏍️'},
- {name:'MacBook Air M1',price:8500000,cat:'Laptop',loc:'Makassar',icon:'💻'},
- {name:'Samsung S23',price:6500000,cat:'HP',loc:'Luwu',icon:'📱'}
+
+{
+name:'iPhone 13 128GB',
+price:4200000,
+cat:'HP',
+loc:'Palopo',
+icon:'📱'
+},
+
+{
+name:'Honda Vario 160',
+price:18500000,
+cat:'Motor',
+loc:'Masamba',
+icon:'🏍️'
+},
+
+{
+name:'MacBook Air M1',
+price:8500000,
+cat:'Laptop',
+loc:'Makassar',
+icon:'💻'
+},
+
+{
+name:'Toyota Avanza 2022',
+price:225000000,
+cat:'Mobil',
+loc:'Palopo',
+icon:'🚗'
+},
+
+{
+name:'Rumah Minimalis',
+price:450000000,
+cat:'Properti',
+loc:'Belopa',
+icon:'🏠'
+},
+
+{
+name:'LCD iPhone 11',
+price:650000,
+cat:'Sparepart',
+loc:'Palopo',
+icon:'🔧'
+},
+
+{
+name:'Samsung S23',
+price:6500000,
+cat:'HP',
+loc:'Luwu',
+icon:'📱'
+},
+
+{
+name:'Jaket Pria',
+price:250000,
+cat:'Fashion',
+loc:'Makassar',
+icon:'👕'
+}
+
 ];
-function money(n){return 'Rp'+Number(n).toLocaleString('id-ID')}
-function card(p){return `<div class="card"><div class="pic">${p.icon||'📦'}</div><div class="info"><div class="name">${p.name}</div><div class="price">${money(p.price)}</div><div class="place">📍 ${p.loc}</div></div></div>`}
-function render(){document.getElementById('homeProducts').innerHTML=products.map(card).join('');renderSearch()}
-function renderSearch(){let q=(document.getElementById('q')?.value||'').toLowerCase();document.getElementById('results').innerHTML=products.filter(p=>p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)).map(card).join('')||'<div class="empty">Barang tidak ditemukan.</div>'}
-function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));let n=document.getElementById('n-'+id);if(n)n.classList.add('active');window.scrollTo(0,0);if(id==='search')renderSearch()}
-function filter(x){document.getElementById('q').value=x;show('search');renderSearch()}
-function publish(){let name=document.getElementById('pname').value.trim(),price=document.getElementById('price').value,cat=document.getElementById('cat').value,loc=document.getElementById('loc').value.trim(),desc=document.getElementById('desc').value.trim();if(!name||!price||!loc){toast('Isi nama, harga, dan lokasi dulu.');return}products.unshift({name,price:Number(price),cat,loc,icon:cat==='HP'?'📱':cat==='Motor'?'🏍️':cat==='Mobil'?'🚗':cat==='Laptop'?'💻':'📦',desc});render();toast('Barang berhasil masuk ke prototype!');document.getElementById('pname').value='';document.getElementById('price').value='';document.getElementById('desc').value='';show('home')}
-function toast(t){let e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2200)}
+
+
+let activeCategory='';
+
+
+function money(n){
+
+return 'Rp'+
+Number(n).toLocaleString('id-ID');
+
+}
+
+
+function card(p){
+
+return `
+
+<div
+class="card"
+onclick="toast('${p.name.replace(/'/g,"\\'")} — ${p.loc}')"
+>
+
+<div class="pic">
+${p.icon||'📦'}
+</div>
+
+<div class="info">
+
+<div class="name">
+${p.name}
+</div>
+
+<div class="price">
+${money(p.price)}
+</div>
+
+<div class="place">
+📍 ${p.loc}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function render(){
+
+document.getElementById(
+'homeProducts'
+).innerHTML=
+products.map(card).join('');
+
+renderSearch();
+
+}
+
+
+function renderSearch(){
+
+let q=
+(document.getElementById('q')?.value||'')
+.toLowerCase();
+
+
+let filtered=
+products.filter(p=>{
+
+let matchText=
+p.name.toLowerCase().includes(q)||
+p.cat.toLowerCase().includes(q)||
+p.loc.toLowerCase().includes(q);
+
+let matchCat=
+!activeCategory||
+p.cat===activeCategory;
+
+return matchText&&matchCat;
+
+});
+
+
+document.getElementById(
+'results'
+).innerHTML=
+
+filtered.map(card).join()
+
+||
+
+'<div class="empty">Barang tidak ditemukan.</div>';
+
+
+document.getElementById(
+'categoryTitle'
+).innerHTML=
+
+activeCategory
+
+?
+
+`<div class="category-title">
+📂 Kategori: ${activeCategory}
+</div>`
+
+:
+
+'';
+
+}
+
+
+function show(id){
+
+document
+.querySelectorAll('.page')
+.forEach(x=>
+x.classList.remove('active')
+);
+
+document
+.getElementById(id)
+.classList.add('active');
+
+
+document
+.querySelectorAll('nav button')
+.forEach(x=>
+x.classList.remove('active')
+);
+
+
+let n=
+document.getElementById('n-'+id);
+
+if(n)
+n.classList.add('active');
+
+
+window.scrollTo(0,0);
+
+
+if(id==='search')
+renderSearch();
+
+}
+
+
+function filter(x){
+
+activeCategory=x;
+
+document.getElementById('q').value='';
+
+show('search');
+
+renderSearch();
+
+}
+
+
+function clearFilter(){
+
+activeCategory='';
+
+document.getElementById('q').value='';
+
+renderSearch();
+
+}
+
+
+function publish(){
+
+let name=
+document
+.getElementById('pname')
+.value
+.trim();
+
+
+let price=
+document
+.getElementById('price')
+.value;
+
+
+let cat=
+document
+.getElementById('cat')
+.value;
+
+
+let loc=
+document
+.getElementById('loc')
+.value
+.trim();
+
+
+let desc=
+document
+.getElementById('desc')
+.value
+.trim();
+
+
+if(!name||!price||!loc){
+
+toast(
+'Isi nama, harga, dan lokasi dulu.'
+);
+
+return;
+
+}
+
+
+let icon='📦';
+
+if(cat==='HP')
+icon='📱';
+
+else if(cat==='Motor')
+icon='🏍️';
+
+else if(cat==='Mobil')
+icon='🚗';
+
+else if(cat==='Laptop')
+icon='💻';
+
+else if(cat==='Properti')
+icon='🏠';
+
+else if(cat==='Sparepart')
+icon='🔧';
+
+else if(cat==='Fashion')
+icon='👕';
+
+
+products.unshift({
+
+name:name,
+
+price:Number(price),
+
+cat:cat,
+
+loc:loc,
+
+icon:icon,
+
+desc:desc
+
+});
+
+
 render();
+
+
+toast(
+'Barang berhasil masuk ke prototype!'
+);
+
+
+document.getElementById('pname').value='';
+
+document.getElementById('price').value='';
+
+document.getElementById('desc').value='';
+
+
+show('home');
+
+}
+
+
+function toast(t){
+
+let e=
+document.getElementById('toast');
+
+e.textContent=t;
+
+e.style.display='block';
+
+setTimeout(
+()=>{
+e.style.display='none'
+},
+2200
+);
+
+}
+
+
+render();
+
 </script>
-</body></html>
+
+</body>
+</html>
